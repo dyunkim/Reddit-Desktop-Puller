@@ -1,6 +1,7 @@
 import praw
 import urllib
 import os
+import shutil
 
 r = praw.Reddit(user_agent='EarthPornPull')
 topTen = r.get_subreddit('EarthPorn').get_hot(limit=10)
@@ -8,6 +9,7 @@ urlList = []
 for x in topTen:
     urlList.append(x.url)
 count = 0
+shutil.rmtree("Wallpapers", ignore_errors=True);
 if os.path.isdir("Wallpapers") == False:
     os.makedirs("Wallpapers")
 for x in urlList:
